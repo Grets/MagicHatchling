@@ -1,6 +1,9 @@
-package magic;
+package magichatchling;
 
-public Class Log extends JScrollPane {
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class Log extends JScrollPane {
 
 	private JTextArea textArea;
 

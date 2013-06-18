@@ -1,4 +1,9 @@
-package magic;
+package magichatchling;
+
+import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.Collections;
 
 public class Deck {
 	private ArrayList<Card> deckList;

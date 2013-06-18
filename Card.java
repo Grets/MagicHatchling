@@ -1,6 +1,14 @@
-package magic;
+package magichatchling;
 
-public Class Card {
+import java.io.File;
+import java.io.IOException;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.awt.geom.AffineTransform;
+import javax.imageio.ImageIO;
+
+public class Card {
 	private boolean isTapped, autoUntaps;
 	private String name;
 	private File image;
@@ -16,7 +24,7 @@ public Class Card {
 		try {
 			BufferedImage bi = ImageIO.read(image);
 			Graphics2D g2d = (Graphics2D)g;
-			AffineTransform trans = new AffineTransformation();
+			AffineTransform trans = new AffineTransform();
 
 			trans.translate(x,y);
 
@@ -24,7 +32,7 @@ public Class Card {
 				trans.rotate(Math.PI/2);
 			}
 
-			g2d.drawImage(image,trans,null);
+			g2d.drawImage(bi,trans,null);
 		} catch(IOException ioe) {
 			System.err.println("Could not read image for - " + name);
 		}
