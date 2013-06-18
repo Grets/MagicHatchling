@@ -1,12 +1,18 @@
 package magichatchling;
 
-public class Permenant {
-	private int fieldPos,attachPos;
-	private Card card;
+public class Permenant extends Card {
 	
-	public Permenant(Card card, int fieldPos, int attachPos) {
-		this.card=card;
-		this.fieldPos=fieldPos;
-		this.attachPos=attachPos;
+	private boolean isTapped, autoUntaps;
+	private List attachments;
+	
+	public Permenant(Card card) {
+		super(card);
+		isTapped = false;
+		autoUntaps = true;
+		attachments = new ArrayList<Permenant>();
+	}
+	
+	public attachPermenant(Card card) {
+		attachments.add(new Permenant(card));
 	}
 }

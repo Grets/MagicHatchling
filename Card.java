@@ -9,18 +9,20 @@ import java.awt.geom.AffineTransform;
 import javax.imageio.ImageIO;
 
 public class Card {
-	private boolean isTapped, autoUntaps;
 	private String name;
 	private File image;
 
 	public Card(String name) {
 		this.name=name;
-		isTapped=false;
-		autoUntaps=true;
 		image=new File(name);
 	}
+	
+	protected Card(Card card) {
+		this.name = card.name;
+		this.image = card.image;
+	}
 
-	public void draw(Graphics g, int x, int y) {
+	public void paint(Graphics g, int x, int y) {
 		try {
 			BufferedImage bi = ImageIO.read(image);
 			Graphics2D g2d = (Graphics2D)g;
