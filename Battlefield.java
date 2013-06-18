@@ -12,8 +12,9 @@ public class Battlefield {
 	}
 	
 	public void addPermenant(Card card) {
+		final Card temp=card;
 		battlefield.add(new ArrayList<Card>(1) {{
-			add(card);
+			add(temp);
 		}});
 	}
 	
