@@ -1,12 +1,6 @@
 package magichatchling;
 
 import java.io.File;
-import java.io.IOException;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.awt.geom.AffineTransform;
-import javax.imageio.ImageIO;
 
 public class Card {
 	private String name;
@@ -22,7 +16,7 @@ public class Card {
 		this.image = card.image;
 	}
 
-	public void paint(Graphics g, int x, int y) {
+	/*public void paint(Graphics g, int x, int y) {
 		try {
 			BufferedImage bi = ImageIO.read(image);
 			Graphics2D g2d = (Graphics2D)g;
@@ -38,5 +32,5 @@ public class Card {
 		} catch(IOException ioe) {
 			System.err.println("Could not read image for - " + name);
 		}
-	}
+	}*/
 }

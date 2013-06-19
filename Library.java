@@ -1,6 +1,9 @@
 package magichatchling;
 
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Library extends Zone {
 
@@ -21,18 +24,22 @@ public class Library extends Zone {
 	
 	public Library(BufferedReader in) {
 		super();
-		String line;
-		while((line = br.readLine()) != null) {
-			cardList.add(new Card(line));
-		}
+                try {
+                    String line;
+                    while((line = in.readLine()) != null) {
+                            cardList.add(new Card(line));
+                    }
+                } catch(IOException ioe) {
+                    System.err.println(ioe.getMessage());
+                }
 	}
 
 	public void shuffle() {
-		Card swap;
+		Object swap;
 		int pos;
 		for(int i=0;i<cardList.size();i++) {
 			swap=cardList.get(i);
-			pos=Math.random()*(cardList.size()-i)+i;
+			pos=(int)(Math.random()*(cardList.size()-i))+i;
 			cardList.set(i,cardList.get(pos));
 			cardList.set(pos,swap);
 		}
@@ -57,6 +64,10 @@ public class Library extends Zone {
 	}
 
 	public Card getTopCard() {
-		return cardList.remove(0);
+		return (Card)cardList.remove(0);
 	}
+        
+        public void paint() {
+            
+        }
 }

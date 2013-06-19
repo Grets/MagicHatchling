@@ -1,5 +1,8 @@
 package magichatchling;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Permenant extends Card {
 	
 	private boolean isTapped, autoUntaps;
@@ -12,7 +15,7 @@ public class Permenant extends Card {
 		attachments = new ArrayList<Permenant>();
 	}
 	
-	public attachPermenant(Card card) {
+	public void attachPermenant(Card card) {
 		attachments.add(new Permenant(card));
 	}
 }

@@ -1,7 +1,7 @@
 package magichatchling;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Battlefield extends Zone {
 	
@@ -11,16 +11,20 @@ public class Battlefield extends Zone {
 	
 	public void addPermenant(Card card) {
 		final Card temp=card;
-		cardList.add(new ArrayList<Card>(1) {{
+		cardList.add(new ArrayList<Permenant>(1) {{
 			add(new Permenant(temp));
 		}});
 	}
 	
 	public void attachPermenant(Card card, int pos) {
-		cardList.get(pos).attachPermenant(card);
+		((Permenant)cardList.get(pos)).attachPermenant(card);
 	}
 	
 	public Iterator<Card> getList() {
 		return ((ArrayList<Card>)cardList).iterator();
 	}
+        
+        public void paint() {
+            
+        }
 }

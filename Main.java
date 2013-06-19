@@ -1,5 +1,12 @@
 package magichatchling;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 public class Main {
 
 	private static ServerSocket hostServer;
@@ -9,13 +16,12 @@ public class Main {
 	private static Player players[];
 	private static boolean isHost;
 	
-	private enum STATE { START, CONNECT, CONNECTED, DISCONNECT, STOP };
-	private enum HOST_MESSAGE { SENDING_DECK, AWAITING DECK, 
+	protected enum State { START, CONNECT, CONNECTED, DISCONNECT, STOP };
 	
-	private final int PORT = 58000;
+	private static final int PORT = 58000;
 	
 	public static void main(String args[]) {
-		int state = STATE.START;
+		State state = State.START;
 		
 		while(true) {
 			try {
@@ -23,13 +29,13 @@ public class Main {
 			} catch(InterruptedException ie) {}
 			
 			switch(state) {
-				case STATE.START:
+				case START:
 					players = new Player[2];
-					player[0] = new Player(new Library(args[0]));
-					state = STATE.CONNECT;
+					players[0] = new Player(new Library(args[0]));
+					state = State.CONNECT;
 					isHost = args[2].equals("host");
 					break;
-				case STATE.CONNECT:
+				case CONNECT:
 					try {
 						if(isHost) {
 							hostServer = new ServerSocket(PORT);
@@ -40,21 +46,21 @@ public class Main {
 						in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 						out = new PrintWriter(socket.getOutputStream(), true);
 						
-						state = STATE.CONNECTED;
+						state = State.CONNECTED;
 					} catch(IOException ioe) {
-						System.err.println("Some IO exception - "+ioe.message());
-					}
-					break
-				case STATE.CONNECTED:
-					try {
-						if(players[1] == null && isHost) {
-							out.print(
-						}
-					} catch(IOException ioe) {
-						System.err.println("Some IO exception - "+ioe.message());
+						System.err.println("Some IO exception - "+ioe.getMessage());
 					}
 					break;
-				case STATE.DISCONNECT:
+				case CONNECTED:
+					//try {
+						//if(players[1] == null && isHost) {
+							
+						//}
+					//} catch(IOException ioe) {
+						//System.err.println("Some IO exception - "+ioe.getMessage());
+					//}
+					break;
+				case DISCONNECT:
 					try {
 						if(hostServer != null) {
 							hostServer.close();
@@ -76,17 +82,15 @@ public class Main {
 					} catch(IOException ioe) {}
 					in = null;
 					
-					try {
-						if(out != null) {
-							out.close();
-						}
-					} catch(IOException ioe) {}
+                                        if(out != null) {
+                                                out.close();
+                                        }
 					out = null;
 					
 					break;
-				case STATE.STOP:
+				case STOP:
 					return;
-				case default: break;
+				default: break;
 			}
 		}
 	}

@@ -1,5 +1,9 @@
 package magichatchling;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public abstract class Zone {
 
 	protected List cardList;
@@ -16,5 +20,5 @@ public abstract class Zone {
 		return cardList.size();
 	}
 	
-	public void paint();
+	public abstract void paint();
 }
