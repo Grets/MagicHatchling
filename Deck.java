@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collections;
 
-public class Deck{
+public class Deck {
 	private ArrayList<Card> deckList;
 
 	public Deck(String path) {

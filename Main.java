@@ -9,7 +9,7 @@ import java.net.Socket;
 
 public class Main {
 
-	private static ServerSocket hostServer;
+	private static ServerSocket serverSocket;
 	private static Socket socket;
 	private static BufferedReader in;
 	private static PrintWriter out;
@@ -18,7 +18,7 @@ public class Main {
 	
 	protected enum State { START, CONNECT, CONNECTED, DISCONNECT, STOP };
 	
-	private static final int PORT = 58000;
+	protected static final int PORT = 58000;
 	
 	public static void main(String args[]) {
 		State state = State.START;
@@ -38,13 +38,13 @@ public class Main {
 				case CONNECT:
 					try {
 						if(isHost) {
-							hostServer = new ServerSocket(PORT);
+							serverServer = new ServerSocket(PORT);
 							socket = hostServer.accept();
-						} else
+							new Server(socket);
+						} else {
 							socket = new Socket(args[1], PORT);
-						
-						in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-						out = new PrintWriter(socket.getOutputStream(), true);
+							new Client(socket);
+						}
 						
 						state = State.CONNECTED;
 					} catch(IOException ioe) {
@@ -52,13 +52,6 @@ public class Main {
 					}
 					break;
 				case CONNECTED:
-					//try {
-						//if(players[1] == null && isHost) {
-							
-						//}
-					//} catch(IOException ioe) {
-						//System.err.println("Some IO exception - "+ioe.getMessage());
-					//}
 					break;
 				case DISCONNECT:
 					try {
@@ -93,5 +86,13 @@ public class Main {
 				default: break;
 			}
 		}
+	}
+	
+	public static void setRemoteLibrary(Library library) {
+		players[1] = new Player(library);
+	}
+	
+	public static void sendLocalLibrary(DataOutputStream out) {
+		players[0].getLibrary().send(out);
 	}
 }

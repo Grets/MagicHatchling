@@ -16,21 +16,12 @@ public class Card {
 		this.image = card.image;
 	}
 
-	/*public void paint(Graphics g, int x, int y) {
+	public void paint(Graphics g, int x, int y) {
 		try {
 			BufferedImage bi = ImageIO.read(image);
-			Graphics2D g2d = (Graphics2D)g;
-			AffineTransform trans = new AffineTransform();
-
-			trans.translate(x,y);
-
-			if(isTapped = true) {
-				trans.rotate(Math.PI/2);
-			}
-
-			g2d.drawImage(bi,trans,null);
+			g.drawImage(bi, x, y, null);
 		} catch(IOException ioe) {
 			System.err.println("Could not read image for - " + name);
 		}
-	}*/
+	}
 }

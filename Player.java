@@ -2,7 +2,7 @@ package magichatchling;
 
 public class Player {
 
-	protected Zone battlefield, library, graveyard, exile, hand;
+	private Zone battlefield, library, graveyard, exile, hand;
 
 	public Player(Library library) {
 		this.library = library;
@@ -10,5 +10,9 @@ public class Player {
 		graveyard = new DeadZone();
 		exile = new DeadZone();
 		hand = new Hand();
+	}
+	
+	public Library getLibrary() {
+		return library;
 	}
 }

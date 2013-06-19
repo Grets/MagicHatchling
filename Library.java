@@ -7,6 +7,8 @@ import java.io.IOException;
 
 public class Library extends Zone {
 
+	public static final String END_OF_LIBRARY="END_OF_LIBRARY";
+
 	public Library(String path) {
 		super();
 		try {
@@ -22,16 +24,16 @@ public class Library extends Zone {
 		}
 	}
 	
-	public Library(BufferedReader in) {
+	public Library(DataInputStream in) {
 		super();
-                try {
-                    String line;
-                    while((line = in.readLine()) != null) {
-                            cardList.add(new Card(line));
-                    }
-                } catch(IOException ioe) {
-                    System.err.println(ioe.getMessage());
-                }
+		try {
+			String line;
+			while((line = in.readUTF()) != null && !line.equals(END_OF_LIBRARY)) {
+				cardList.add(new Card(line));
+			}
+		} catch(IOException ioe) {
+			System.err.println(ioe.getMessage());
+		}
 	}
 
 	public void shuffle() {
@@ -67,7 +69,18 @@ public class Library extends Zone {
 		return (Card)cardList.remove(0);
 	}
         
-        public void paint() {
-            
-        }
+	public void paint(Graphics g) {
+		
+	}
+	
+	public static int getDrawCap() {
+		return 100;
+	}
+	
+	public void send(DataOutputStream out) {
+		for(String card:cardList.toArray()) {
+			out.writeUTF(card);
+		}
+		out.write(END_OF_LIBRARY);
+	}
 }

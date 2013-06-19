@@ -24,7 +24,7 @@ public class Battlefield extends Zone {
 		return ((ArrayList<Card>)cardList).iterator();
 	}
         
-        public void paint() {
-            
-        }
+	public void paint(Graphics g) {
+		
+	}
 }

@@ -2,7 +2,7 @@ package magichatchling;
 
 public class Hand extends Zone {
 
-	public void paint() {
+	public void paint(Graphics g) {
 	}
 	
 	public void mulligan(Library library) {

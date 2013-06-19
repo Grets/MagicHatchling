@@ -2,7 +2,11 @@ package magichatchling;
 
 public class DeadZone extends Zone {
 	
-	public void paint() {
+	public void paint(Graphics g) {
 		
+	}
+	
+	public static int getDrawCap() {
+		return 6;
 	}
 }
