@@ -9,6 +9,7 @@ public class Log extends JScrollPane {
 
 	/**
 	 * http://docs.oracle.com/javase/tutorial/uiswing/components/textarea.html
+	 * adding a line to fix commit issues
 	 **/
 	public Log() {
 		super();
