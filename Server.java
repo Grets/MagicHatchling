@@ -1,5 +1,10 @@
 package magichatchling;
 
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.Socket;
+
 public class Server extends Host {
 
 	private DataInputStream in;
@@ -7,14 +12,18 @@ public class Server extends Host {
 	public Server(Socket sock) {
 		super();
 		
-		in = new DataInputStream(sock.getInputStream());
-		
-		Main.setRemoteLibrary(new Library(in));
-		
-		new Client(sock.getOutputStream());
+                try {
+                    in = new DataInputStream(sock.getInputStream());
+
+                    Main.setRemoteLibrary(new Library(in));
+
+                    new Client(sock.getOutputStream(), true);
+                } catch(IOException ioe) {
+                    System.err.println(ioe.getMessage());
+                }
 	}
 	
-	public Server(InputStream in) {
+	public Server(InputStream in, boolean IGNORE) {
 		super();
 		
 		this.in = new DataInputStream(in);
@@ -22,7 +31,7 @@ public class Server extends Host {
 		Main.setRemoteLibrary(new Library(this.in));
 	}
 	
-	protected static String getName() {
+	protected String getName() {
 		return "Magic Hatchling Server";
 	}
 	

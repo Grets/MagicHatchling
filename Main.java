@@ -1,15 +1,15 @@
 package magichatchling;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Main {
 
-	private static ServerSocket serverSocket;
+        private static ServerSocket serverSocket;
 	private static Socket socket;
 	private static BufferedReader in;
 	private static PrintWriter out;
@@ -38,8 +38,8 @@ public class Main {
 				case CONNECT:
 					try {
 						if(isHost) {
-							serverServer = new ServerSocket(PORT);
-							socket = hostServer.accept();
+							serverSocket = new ServerSocket(PORT);
+							socket = serverSocket.accept();
 							new Server(socket);
 						} else {
 							socket = new Socket(args[1], PORT);
@@ -55,11 +55,11 @@ public class Main {
 					break;
 				case DISCONNECT:
 					try {
-						if(hostServer != null) {
-							hostServer.close();
+						if(serverSocket != null) {
+							serverSocket.close();
 						}
 					} catch(IOException ioe) {}
-					hostServer = null;
+					serverSocket = null;
 					
 					try {
 						if(socket != null) {

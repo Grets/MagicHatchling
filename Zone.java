@@ -1,5 +1,6 @@
 package magichatchling;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -8,7 +9,7 @@ public abstract class Zone {
 
 	protected List cardList;
 	protected final int DRAW_CAP;
-	protected final int X_POS, y_POS;
+	protected final int X_POS, Y_POS;
 	
 	protected Zone() {
 		cardList = new ArrayList<Card>();
@@ -27,5 +28,5 @@ public abstract class Zone {
 	
 	public abstract void paint(Graphics g);
 	public abstract int getDrawCap();
-	public abstract 
+        public abstract int[] getPos();
 }

@@ -13,6 +13,6 @@ public class Player {
 	}
 	
 	public Library getLibrary() {
-		return library;
+		return (Library)library;
 	}
 }

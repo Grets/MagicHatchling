@@ -11,5 +11,5 @@ public abstract class Host implements Runnable {
 		t.start();
 	}
 	
-	protected abstract static String getName();
+	protected abstract String getName();
 }
